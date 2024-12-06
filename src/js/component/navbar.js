@@ -10,7 +10,7 @@ export const Navbar = () => {
 		
     <nav class="navbar">
         <div class="navbar-left">
-		<Link to={Home} className="btn"><i class="fa-solid fa-house"></i></Link>
+		<Link to="/" className="btn"><i class="fa-solid fa-house"></i></Link>
         </div>
         <div class="navbar-center">
 		<img src={Logo}/>
@@ -30,13 +30,9 @@ export const Navbar = () => {
         </div>
     </nav>
     <div class="navbar-links">
-        <Link to={Detail}><i class="fa-solid fa-location-dot"></i></Link>
-        <a href="#">Video</a>
-        <a href="#">Films</a>
-        <a href="#">Series</a>
-        <a href="#">Games + Interactive</a>
-        <a href="#">Databank</a>
-        <a href="#">Disney+</a>
+        <a href="#">Characters</a>
+        <a href="#">Space ships</a>
+        <a href="#">Movies</a>
     </div>
 	</div>
 	);
