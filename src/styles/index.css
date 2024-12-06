@@ -51,9 +51,9 @@ body {
 
 .carousel-container {
     overflow-x: auto; 
-    width: 100%;
+    width: 85%;
     padding: 20px 0;
-    background-color: #111;
+    
   }
   
   .carousel {
@@ -110,7 +110,21 @@ body {
 
   .btn{
     background-color: rgb(255,232,31);
+    transition: all 0.3s ease
   }
+
+  .btn:hover{
+    background-color: #25252500;
+    color: white;
+    border: 1px solid rgb(255,232,31);
+  }
+
+  .btn:active{
+    background-color: rgb(255,232,31);
+    color: white;
+
+  }
+
   .space-ships{
     margin-top: 50px;
   }
@@ -124,7 +138,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
   
-  /* Header Section */
+
   .character-header {
     display: flex;
     flex-wrap: wrap;
@@ -155,7 +169,7 @@ body {
     margin: 0;
   }
   
-  /* Info Section */
+  
   .character-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -186,3 +200,5 @@ body {
     display: block;
     justify-content: center;
   }
+
+  
