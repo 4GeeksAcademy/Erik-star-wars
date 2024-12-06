@@ -1,3 +1,11 @@
-/* 
-    General Styles
-*/
+body{
+    background-color: black;
+}
+
+.logo{
+    width: 100px;
+}
+
+.navbar{
+    border-bottom: 1px solid rgb(255,232,31);
+}
