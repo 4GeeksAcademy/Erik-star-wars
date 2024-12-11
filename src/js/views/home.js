@@ -1,85 +1,99 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
-import { Detail } from "./detail";
+import { DetailPeople } from "./detail";
+import { Context } from "../store/appContext";
 
-export const Home = () => (
-	<div className="mt-5 home">
-		<div className="">
-			<h1 className="text-center">Characters</h1>
-			<div class="carousel-container mx-auto">
-				<div class="carousel">
 
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption d-block mx-2">
-							<div className="m-0">
-								<p>Gender:</p>
-							</div>
-							<div>
-								<p>Hair color:</p>
-							</div>
-							<div>
-								<p>Eye color:</p>
-							</div>
-						</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
+export const Home = () => {
+
+	const { store } = useContext(Context);
+	console.log(store)
+	return (
+		<div className="mt-5 home">
+			<div className="">
+				<h1 className="text-center">Characters</h1>
+				<div className="carousel-container mx-auto">
+					<div className="carousel">
+						{
+							store.people.map(people => (
+								<div key={people.uid} className="card">
+									<img src={`https://starwars-visualguide.com/assets/img/characters/${people.uid}.jpg`} className="card-img-top" alt="..." />
+									<div className="caption d-block mx-2">
+										<div className="m-0">
+											<h5>{people.name}</h5>
+										</div>
+									</div>
+									<div className="d-flex justify-content-between m-3">
+										<Link to={`/detail/${people.uid}`} className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+									</div>
+								</div>
+							)
+							)
+						}
+
 					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption">Time to do something... exciting!</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
+				</div>
+			</div>
+			<div className="space-ships ">
+				<h1 className="text-center">Space ships</h1>
+				<div className="carousel-container mx-auto">
+					<div className="carousel">
+
+					{
+							store.starships.map(starships => (
+								<div key={starships.uid} className="card">
+									<img src={`https://starwars-visualguide.com/assets/img/starships/${starships.uid}.jpg`} className="card-img-top" alt="..." />
+									<div className="caption d-block mx-2">
+										<div className="m-0">
+											<h5>{starships.name}</h5>
+										</div>
+									</div>
+									<div className="d-flex justify-content-between m-3">
+										<Link to="/detail" className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+									</div>
+								</div>
+							)
+							)
+						}
+
+
+
 					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption">Time to do something... exciting!</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption">Time to do something... exciting!</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption">Time to do something... exciting!</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1"/>
-						<div class="caption">Time to do something... exciting!</div>
-						<div className="d-flex justify-content-between m-3"><Link to="/detail" className="btn">Learn more!</Link><button className="btn"><i class="fa-regular fa-heart"></i></button></div>
+				</div>
+			</div>
+
+
+			<div className="space-ships ">
+				<h1 className="text-center">Species</h1>
+				<div className="carousel-container mx-auto">
+					<div className="carousel">
+
+					{
+							store.species.map(species => (
+								<div key={species.uid} className="card">
+									<img src={`https://starwars-visualguide.com/assets/img/species/${species.uid}.jpg`} className="card-img-top" alt="..." />
+									<div className="caption d-block mx-2">
+										<div className="m-0">
+											<h5>{species.name}</h5>
+										</div>
+									</div>
+									<div className="d-flex justify-content-between m-3">
+										<Link to="/detail" className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+									</div>
+								</div>
+							)
+							)
+						}
+
+
+
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div className="space-ships ">
-			<h1 className="text-center">Space ships</h1>
-			<div class="carousel-container mx-auto">
-				<div class="carousel">
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1" />
-						<div class="caption">Time to do something... exciting!</div>
-						<div><Link to="/detail" className="btn mb-2">Learn more!</Link></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1" />
-						<div class="caption">Time to do something... exciting!</div>
-						<div><Link to="/detail" className="btn mb-2">Learn more!</Link></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1" />
-						<div class="caption">Time to do something... exciting!</div>
-						<div><Link to="/detail" className="btn mb-2">Learn more!</Link></div>
-					</div>
-					<div class="card">
-						<img src="image1.jpg" alt="Image 1" />
-						<div class="caption">Time to do something... exciting!</div>
-						<div><Link to="/detail" className="btn mb-2">Learn more!</Link></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-);
+	)
+};

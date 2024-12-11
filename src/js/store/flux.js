@@ -1,45 +1,46 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			people: [],
+			starships: [],
+			species: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+				
+				getPeople: () => {
+					fetch('https://www.swapi.tech/api/people/')
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.results;
+						setStore ({ people: response });
+					})
+				},
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+				getStarShips: () => {
+					fetch('https://www.swapi.tech/api/starships/')
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.results;
+						setStore ({ starships: response });
+					})
+				},
+
+				getSpecies: () => {
+					fetch('https://www.swapi.tech/api/species/')
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.results;
+						setStore ({ species: response });
+					})
+				},
+
+
+
+			
+		}
 		}
 	};
-};
+
 
 export default getState;
