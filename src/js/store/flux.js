@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			starships: [],
-			species: []
+			species: [],
+			detailpeople: [],
 		},
 		actions: {
 				
@@ -32,6 +33,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(respJson => {
 						const response = respJson.results;
 						setStore ({ species: response });
+					})
+				},
+
+				getDetailPeople: () => {
+					fetch(`https://www.swapi.tech/api/people/${uid}`)
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.results;
+						setStore ({ detailpeople: response });
 					})
 				},
 
