@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React, { useActionState, useContext } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
-import { DetailPeople } from "./detail";
+
 import { Context } from "../store/appContext";
 
 
 export const Home = () => {
 
-	const { store } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	console.log(store)
 	return (
 		<div className="mt-5 home">
-			<div className="">
+			<div>
 				<h1 className="text-center">Characters</h1>
 				<div className="carousel-container mx-auto">
 					<div className="carousel">
@@ -25,8 +25,8 @@ export const Home = () => {
 										</div>
 									</div>
 									<div className="d-flex justify-content-between m-3">
-										<Link to={`/detail/${people.uid}`} className="btn">Learn more!</Link>
-										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+										<Link to={`/people/${people.uid}`} className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart" onClick={() => actions.addFavorite(people.name)}></i></button>
 									</div>
 								</div>
 							)
@@ -37,11 +37,11 @@ export const Home = () => {
 				</div>
 			</div>
 			<div className="space-ships ">
-				<h1 className="text-center">Space ships</h1>
+				<h1 className="text-center">Star ships</h1>
 				<div className="carousel-container mx-auto">
 					<div className="carousel">
 
-					{
+						{
 							store.starships.map(starships => (
 								<div key={starships.uid} className="card">
 									<img src={`https://starwars-visualguide.com/assets/img/starships/${starships.uid}.jpg`} className="card-img-top" alt="..." />
@@ -51,8 +51,8 @@ export const Home = () => {
 										</div>
 									</div>
 									<div className="d-flex justify-content-between m-3">
-										<Link to="/detail" className="btn">Learn more!</Link>
-										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+										<Link to={`/starship/${starships.uid}`} className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart" onClick={() => actions.addFavorite(starships.name)}></i></button>
 									</div>
 								</div>
 							)
@@ -71,7 +71,7 @@ export const Home = () => {
 				<div className="carousel-container mx-auto">
 					<div className="carousel">
 
-					{
+						{
 							store.species.map(species => (
 								<div key={species.uid} className="card">
 									<img src={`https://starwars-visualguide.com/assets/img/species/${species.uid}.jpg`} className="card-img-top" alt="..." />
@@ -81,8 +81,8 @@ export const Home = () => {
 										</div>
 									</div>
 									<div className="d-flex justify-content-between m-3">
-										<Link to="/detail" className="btn">Learn more!</Link>
-										<button className="btn"><i className="fa-regular fa-heart"></i></button>
+										<Link to={`/species/${species.uid}`} className="btn">Learn more!</Link>
+										<button className="btn"><i className="fa-regular fa-heart" onClick={() => actions.addFavorite(species.name)}></i></button>
 									</div>
 								</div>
 							)

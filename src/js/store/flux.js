@@ -4,7 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			starships: [],
 			species: [],
-			detailpeople: [],
+			detailpeople: null,
+			detailspecies: null,
+			detailstarships: null,
+			favorites: []
 		},
 		actions: {
 				
@@ -36,19 +39,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				},
 
-				getDetailPeople: () => {
-					fetch(`https://www.swapi.tech/api/people/${uid}`)
+				getDetailPeople: (id) => {
+					fetch(`https://www.swapi.tech/api/people/${id}`)
 					.then(resp =>resp.json())
 					.then(respJson => {
-						const response = respJson.results;
+						const response = respJson.result.properties;
+						console.log(response)
 						setStore ({ detailpeople: response });
 					})
 				},
 
+				getDetailSpecies: (id) => {
+					fetch(`https://www.swapi.tech/api/species/${id}`)
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.result.properties;
+						setStore ({ detailspecies: response });
+					})
+				},
 
+				getDetailStarships: (id) => {
+					fetch(`https://www.swapi.tech/api/starships/${id}`)
+					.then(resp =>resp.json())
+					.then(respJson => {
+						const response = respJson.result.properties;
+						setStore ({ detailstarships: response });
+					})
+				},
 
-			
-		}
+				addFavorite: (fav) => {
+					const store=getStore();
+					if (!store.favorites.includes(fav)){
+						setStore({ favorites: [...store.favorites, fav]})
+					}
+					
+				},
+	
+				removeFavorite: (item) => {
+					const store=getStore();
+					setStore({ favorites: store.favorites.filter((fav) => fav !== item),
+						
+					});
+	
+				}
+			}
 		}
 	};
 
